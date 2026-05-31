@@ -1,4 +1,4 @@
-package com.example.backendnavgraph.presentation.ui
+package com.example.backendnavgraph.presentation.ui.notes
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement

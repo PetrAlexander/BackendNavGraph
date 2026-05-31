@@ -1,4 +1,4 @@
-package com.example.backendnavgraph.presentation.ui
+package com.example.backendnavgraph.presentation.ui.edit.base
 
 import androidx.compose.material3.*
 import androidx.compose.runtime.*

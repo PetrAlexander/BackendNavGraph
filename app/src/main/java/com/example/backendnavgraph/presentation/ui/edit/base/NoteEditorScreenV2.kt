@@ -1,4 +1,4 @@
-package com.example.backendnavgraph.presentation.ui
+package com.example.backendnavgraph.presentation.ui.edit.base
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -81,7 +81,6 @@ fun NoteEditorScreenV2(
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Floating card editor
             Card(
                 modifier = Modifier
                     .fillMaxSize(),
@@ -94,7 +93,6 @@ fun NoteEditorScreenV2(
                         .fillMaxSize()
                 ) {
 
-                    // Title (big, borderless)
                     TextField(
                         value = title,
                         onValueChange = { title = it },
@@ -116,7 +114,6 @@ fun NoteEditorScreenV2(
 
                     Spacer(modifier = Modifier.height(12.dp))
 
-                    // Content (borderless, large)
                     TextField(
                         value = content,
                         onValueChange = { content = it },
