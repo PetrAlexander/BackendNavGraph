@@ -1,6 +1,9 @@
 package com.example.backendnavgraph.presentation.navigation
 
+import android.os.Build
 import android.util.Log
+import androidx.activity.compose.BackHandler
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -10,9 +13,11 @@ import com.example.backendnavgraph.data.repository.NotesRepository
 import com.example.backendnavgraph.presentation.ui.notes.NotesListScreen
 import com.example.backendnavgraph.presentation.ui.edit.EditorRenderer
 
+@RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
 @Composable
 fun ScreenHost(
-    graph: NavigationGraphDto
+    graph: NavigationGraphDto,
+    onFinish: () -> Unit
 ) {
     val navigator = remember {
         mutableStateOf(
@@ -20,18 +25,27 @@ fun ScreenHost(
         )
     }.value
 
+    BackHandler {
+
+        val handled = navigator.onBack()
+
+        if (!handled) {
+            onFinish()
+        }
+    }
+
     val repo = remember { mutableStateOf(NotesRepository) }.value
 
-    val screen = remember(navigator.currentRoute) {
+    val screen = remember(navigator.getCurrentRoute()) {
         mutableStateOf(
             graph.screen(
-                navigator.currentRoute
+                navigator.getCurrentRoute()
             )
         )
     }
 
     Log.d("SOME1WASBORN!", "screen ${screen.value}")
-    Log.d("SOME1WASBORN!", "currentRoute ${navigator.currentRoute}")
+    Log.d("SOME1WASBORN!", "currentRoute ${navigator.getCurrentRoute()}")
 
     screen.value?.let { screenValue ->
         Log.d("SOME1WASBORN!", "screenValue ${screenValue}")

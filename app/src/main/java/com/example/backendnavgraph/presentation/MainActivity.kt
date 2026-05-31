@@ -1,10 +1,13 @@
 package com.example.backendnavgraph.presentation
 
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.BackHandler
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.annotation.RequiresApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
@@ -20,6 +23,7 @@ class MainActivity : ComponentActivity() {
 
     private val notes = mutableStateListOf<Note>()
 
+    @RequiresApi(Build.VERSION_CODES.VANILLA_ICE_CREAM)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -72,6 +76,7 @@ class MainActivity : ComponentActivity() {
 
                 ScreenHost(
                     graph = graphValue,
+                    onFinish = { finish() }
                 )
             } else {
                 SplashScreen()
