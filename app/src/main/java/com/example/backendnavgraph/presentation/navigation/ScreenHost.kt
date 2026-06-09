@@ -44,19 +44,13 @@ fun ScreenHost(
         )
     }
 
-    Log.d("SOME1WASBORN!", "screen ${screen.value}")
-    Log.d("SOME1WASBORN!", "currentRoute ${navigator.getCurrentRoute()}")
-
     screen.value?.let { screenValue ->
-        Log.d("SOME1WASBORN!", "screenValue ${screenValue}")
         when (screenValue.route) {
 
             "notes" -> {
 
-                Log.d("SOME1WASBORN!", "notes")
                 NotesListScreen(
                     onAddClick = {
-                        Log.d("SOME1WASBORN!", "onAddClick")
                         navigator.sendEvent(
                             graph = graph,
                             event = "add_note"
@@ -74,7 +68,6 @@ fun ScreenHost(
             }
 
             "editor" -> {
-                Log.d("SOME1WASBORN!", "editor")
 
                 val noteId = navigator.currentPayload["noteId"] as? Long
 
